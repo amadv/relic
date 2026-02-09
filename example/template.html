@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>{{TITLE}}</title>
+    <link rel="stylesheet" href="/style.css" type="text/css">
+    <meta charset="UTF-8">
+</head>
+<body>
+<header>
+    <nav>
+        <div>{{HEADER_LINKS}}</div>
+    </nav>
+    <h1><a href="/">{{SITE_NAME}} <span id="headerSubTitle">{{HEADER_SUBTITLE}}</span></a></h1>
+</header>
+
+    <nav id="side-bar">
+        <div>
+            <p class="sideBarTitle">pages:</p>
+            {{NAV}}
+        </div>
+    </nav>
+
+<article>
+    {{CONTENT}}
+</article>
+
+<footer>
+    {{FOOTER}}
+</footer>
+
+<script>
+function toggleNav(el) {
+    el.classList.toggle('expanded');
+    el.classList.toggle('collapsed');
+    const children = el.nextElementSibling;
+    if (children) {
+        children.style.display = children.style.display === 'none' ? 'block' : 'none';
+    }
+}
+</script>
+</body>
+</html>

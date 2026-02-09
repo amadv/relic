@@ -1,0 +1,167 @@
+body {
+	display: flex;
+	flex-wrap: wrap;
+	font-family: sans;
+	background-color: #6f1a1f;
+	color: #f4f0f0;
+	margin: 0;
+}
+
+html,
+body {
+	font-family: "FreeSans", "Helvetica Neue", Arial, sans-serif;
+}
+
+img {
+	max-height: 50vh;
+	width: auto;
+	height: auto;
+}
+
+.dir-list {
+	list-style-type: none;
+	padding-left: 0;
+	margin: 0;
+}
+
+.dir-list img {
+	border: 2px solid white;
+	margin: 0.25rem;
+}
+
+header,
+footer {
+	flex-basis: 100%;
+	flex-shrink: 0;
+}
+
+article {
+	flex-basis: 60%;
+	padding: 1rem;
+}
+
+header nav {
+	display: flex;
+	justify-content: space-between;
+}
+
+nav a,
+header a {
+	text-decoration: none;
+	color: inherit;
+}
+
+header h1 span {
+	margin-left: 1em;
+	font-size: 50%;
+	font-style: italic;
+}
+
+body > nav {
+	flex-basis: content;
+	padding-right: 1vw;
+	min-width: 16em;
+}
+
+nav ul {
+	display: flex;
+	flex-direction: column;
+	list-style-type: none;
+	list-style-position: outside;
+	padding-left: 0;
+}
+
+footer {
+	margin-top: 2rem;
+}
+
+a,
+a:visited,
+#side-bar a,
+header nav a,
+header h1 a {
+	color: #ffd7d9;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #5e0707;
+	background-color: #ffffff;
+}
+
+header,
+footer,
+#side-bar,
+article,
+.derive-backdrop .derive-hero {
+	background: none;
+	box-shadow: none;
+}
+
+.derive-top-links,
+.derive-top-note {
+	display: flex;
+	gap: 0.5rem;
+	font-size: 0.95rem;
+	letter-spacing: 0.04em;
+}
+
+.derive-top-note {
+	margin-top: 0.25rem;
+	font-style: italic;
+}
+
+#side-bar {
+	padding: 1rem;
+}
+
+#side-bar a:hover {
+	color: #5e0707;
+	background-color: #ffffff;
+}
+
+.sideBarTitle,
+article h1,
+article h2,
+article h3 {
+	color: #fff4f4;
+}
+
+blockquote {
+	border-left: 2px solid #ffd7d9;
+	padding-left: 1rem;
+	color: #ffecec;
+}
+
+.derive-backdrop {
+	text-align: center;
+	margin-bottom: 1.5rem;
+}
+
+.derive-backdrop,
+.derive-hero {
+	width: 100%;
+	max-width: 420px;
+	height: auto;
+	border-radius: 0;
+}
+
+/* Tree toggle styling - for collapsible navigation */
+.nav-toggle {
+	cursor: pointer;
+	user-select: none;
+}
+
+.nav-toggle a {
+	margin-left: 4px;
+}
+
+/* Children container */
+.nav-children {
+	margin-left: 20px;
+}
+
+/* Current page styling */
+.thisPage {
+	font-weight: bold;
+}

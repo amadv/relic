@@ -1,0 +1,173 @@
+.Dd December 2025
+.Dt RELIC 1
+.Os
+.
+.Sh NAME
+.Nm relic
+.Nd minimal static site generator inspired by werc
+.
+.Sh SYNOPSIS
+.Nm relic
+.Ar <in>
+.Ar <out>
+.
+.Sh DESCRIPTION
+.Nm
+is a minimal static site generator inspired by
+.Lk http://werc.cat-v.org werc
+from Plan 9.
+It transforms a directory tree containing Markdown files and static assets
+into a fully static HTML website.
+.
+.Pp
+The filesystem defines structure, navigation, and meaning. There is no metadata, database, runtime server, or dynamic behaviour.
+.
+.Sh OPERATION
+Given an input directory and an output directory
+.Nm
+does this:
+.
+.Bl -bullet -compact
+.It
+recursively walks the input directory tree.
+.It
+mirrors the directories structure into the output directory.
+.It
+copies all non Markdown files.
+.It
+converts all
+.Pa .md
+files into
+.Pa .html
+using
+.Xr lowdown 1 .
+.It
+shoves all generated HTML pages in a single global HTML template.
+.It
+generates navbar from the directory hierarchy.
+.El
+.
+.Pp
+The resulting output directory is suitable to be directly served by any HTTP server.
+.
+.Sh MARKDOWN PROCESSING
+Markdown files are converted to HTML using
+.Xr lowdown 1 .
+.
+.Pp
+For every file:
+.Bd -literal -offset indent
+page.md->page.html
+.Ed
+.
+.Pp
+Relative links referring to
+.Pa .md
+files are rewritten to point to the correct
+.Pa .html
+files.
+.
+.Sh TEMPLATE
+The HTML template is a regular HTML file located at the root of the input
+directory.
+Its filename is defined at compile time.
+.
+.Pp
+The template should contain the following placeholders:
+.
+.Bl -tag -width Ds
+.It Li {{TITLE}}
+replaced with the site title.
+.It Li {{NAV}}
+replaced with the generated navbar HTML.
+.It Li {{CONTENT}}
+replaced with the page content.
+.It Li {{FOOTER}}
+replaced with footer text.
+.El
+.
+.Pp
+All pages use the same template. No per-page templating is supported.
+.
+.Sh FILE LAYOUT
+Example input layout:
+.Bd -literal -offset indent
+in/
+|-->index.md
+|-->docs/
+|   |-->system/
+|       |-->init.md
+|       |-->networking/
+|           |-->ethernet.md
+|
+|-->style.html
+|-->template.html
+.Ed
+.
+.Pp
+Corresponding output layout:
+.Bd -literal -offset indent
+out/
+|-->index.html
+|-->docs/
+|   |-->system/
+|       |-->init.html
+|       |-->networking/
+|           |-->ethernet.html
+|
+|-->style.html
+|-->template.html
+.Ed
+.
+.Sh CONFIGURATION
+.Nm
+Edit
+.Pa config.go
+then recompile.
+.
+.Pp
+Configuration values:
+.
+.Bl -bullet -compact
+.It
+Site title
+.It
+Footer text
+.It
+Template filename
+.It
+Navigation symbols
+.El
+.
+.Sh EXIT STATUS
+.Ex -std
+.
+.Sh DEPENDENCIES
+.Bl -bullet -compact
+.It
+.Xr lowdown 1
+.El
+.
+.Sh PHILOSOPHY
+.Nm
+is intentionally opinionated.
+It treats your site as build output rather than a dynamic system.
+If you need dynamic behaviour, use
+.Lk http://werc.cat-v.org werc
+instead.
+.
+.Pp
+Users are expected to understand basic filesystem concepts.
+.
+.Sh SEE ALSO
+.Xr lowdown 1 ,
+.Xr httpd 8
+.
+.Sh AUTHORS
+.Nm
+was inspired by
+.Lk http://werc.cat-v.org werc
+by Uriel and the cat-v team.
+.Pp
+.Nm
+itself was written with appreciation for the original.
